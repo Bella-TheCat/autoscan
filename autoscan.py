@@ -47,7 +47,7 @@ def port_scanner(target, port_range):
                 open_services.append(service)  # adds service to the list! (we love that guy so much)
             s.close()
     except KeyboardInterrupt:
-        print("\nscan interrupted\nyou idiot >:c.")
+        print("\nscan interrupted.")
     except socket.error:
         print(f"error connecting to {target}.")
     
