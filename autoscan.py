@@ -5,29 +5,7 @@ import subprocess
 def port_scanner(target, port_range):
     print(f"Starting scan on {target}")
     print(f"Scanning ports: {port_range[0]} to {port_range[1]}\n")
-    print(f"""\n
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣦⣶⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣯⠀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⡠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣯⠉⠉⠛⠻⠿⠿⢿⣿⣿⣦⡑⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠛⠹⠛⣿⣿⡿⢿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠈⠙⢿⣿⣦⡀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠶⠂
-⠀⠀⠀⠀⠀⠀⠀⣰⣿⣯⢞⡴⠋⠀⣸⣿⣿⡇⠸⣿⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣆⠀⢀⣀⣠⣶⣿⡤⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⣼⣿⡷⢡⠞⠀⠀⠀⢹⣿⣿⠇⠀⠈⢿⣿⣷⣄⣄⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣷⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⣸⣿⣿⣰⠋⠀⠀⠀⠀⢰⣿⣿⠀⠀⠀⠘⣿⣿⣿⣿⣆⠀⠀⠀⢀⣠⣴⣿⣿⣿⣿⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢰⡟⣾⣿⠇⠀⠀⠀⠀⠀⣾⣿⡿⠀⠀⠀⠀⠘⣿⣿⣿⣿⣀⣤⣾⣿⡿⠟⠉⠁⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣿⣃⣿⡟⠀⠀⠀⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀⢀⣘⣿⣿⣿⣿⣿⠿⠉⠀⠀⠀⠀⢹⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣿⣿⡿⠃⠀⠀⠀⠀⠀⢠⣿⣿⡿⠀⢠⣴⣿⣿⣿⣿⡿⣿⣿⣿⡀⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣿⣿⡇⠀⣧⠀⠀⠀⠀⣸⣿⣿⣧⣶⣿⣿⡿⠟⠋⠁⠀⠘⣿⣿⣿⡄⠀⠀⠀⠀⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⢹⡏⣿⠸⣿⡄⠀⣀⣴⣿⣿⣿⡿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣥⣶⠀⢠⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠘⣿⣽⣶⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡿⣿⣿⣧⣾⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⣠⣼⣿⣿⣿⣿⣿⠛⢉⣿⣿⡿⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⣼⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠈⠙⣟⣹⡿⠋⠁⠈⠻⣯⡿⣿⣿⣿⣿⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣿⣿⣿⠟⢿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠘⠉⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣷⣦⣤⣀⣀⣀⣤⣴⣶⣿⣿⣿⡿⠟⠁⠀⠀⠉⠻⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⣿⣶⣬⣙⣛⡛⠛⠿⠿⠿⣿⣿⣿⡿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⠛⢄⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⡿⠀⠈⠉⠉⠉⠙⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠘⠛⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⡟⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠸⠇⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀""")
+
     start_time = datetime.now()
 
     open_services = []  # this is the list that holds the open services (WE LOVE)
@@ -63,12 +41,12 @@ def metasploit_search_by_service(services):
             result = subprocess.run(command, shell=True, text=True, capture_output=True)
 
             output = result.stdout.splitlines()
-            excellent_exploits = []  # Collect exploits
+            excellent_exploits = []  # Collect exploits before filter
             for line in output:
-                if "excellent" in line.lower() and "yes" in line.lower():
+                if "excellent" in line.lower() and "yes" in line.lower(): # so this guy is the filter
                     excellent_exploits.append(line.strip())
 
-            print(f"\nFound excellent exploits: {excellent_exploits}\n")
+            print(f"\nFound excellent exploits: {excellent_exploits}\n") # prints the stuff yo
 
     except Exception as e:
         print(f"Failed to do Metasploit search: {e}")
