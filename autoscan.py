@@ -61,7 +61,7 @@ if __name__ == "__main__":
     if metasploitrun.lower() in ["y", "yes"]:
         print("\nMetasploit running")
 
-        # Perform port scanning and collect services
+        # Perform port scanning and collect services, twinkle twinkle, yo
         services = port_scanner(target_ip, (start_port, end_port))
         if services:
             metasploit_search_by_service(services)
@@ -73,3 +73,4 @@ if __name__ == "__main__":
         port_scanner(target_ip, (start_port, end_port))
     else:
         print("\nhow hard is it to hit a simple Y or N???\nI made it so you can even say yes or no if you wanna be a jerk!\n")
+        
